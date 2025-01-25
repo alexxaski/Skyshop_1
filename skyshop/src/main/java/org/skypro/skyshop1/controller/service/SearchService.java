@@ -1,9 +1,9 @@
 package org.skypro.skyshop1.controller.service;
 import org.skypro.skyshop1.controller.model.search.SearchResult;
 import org.springframework.stereotype.Service;
-
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 @Service
 public class SearchService {

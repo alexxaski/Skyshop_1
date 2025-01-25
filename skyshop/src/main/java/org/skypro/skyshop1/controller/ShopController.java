@@ -6,7 +6,6 @@ import org.skypro.skyshop1.controller.model.product.Product;
 import org.skypro.skyshop1.controller.model.article.Article;
 import org.skypro.skyshop1.controller.service.StorageService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;

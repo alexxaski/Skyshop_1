@@ -1,7 +1,7 @@
 package org.skypro.skyshop1.controller.model.product;
 
-
 import java.util.UUID;
+
 
 public class FixPriceProduct extends Product {
 
@@ -9,6 +9,7 @@ public class FixPriceProduct extends Product {
 
     public FixPriceProduct(UUID id, String productName) {
         super(id,productName);
+
     }
     @Override
     public int getPrice () {

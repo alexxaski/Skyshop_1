@@ -8,7 +8,6 @@ import java.util.TreeSet;
 import java.util.function.Supplier;
 import java.util.AbstractMap;
 import java.util.stream.Collectors;
-
 import java.util.Set;
 
 public class SearchEngine {

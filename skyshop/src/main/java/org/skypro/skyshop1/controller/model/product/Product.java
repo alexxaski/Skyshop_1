@@ -1,7 +1,6 @@
 package org.skypro.skyshop1.controller.model.product;
 
 import org.skypro.skyshop1.controller.model.search.Searchable;
-
 import java.util.Objects;
 import java.util.UUID;
 

@@ -2,6 +2,7 @@ package org.skypro.skyshop1.controller.model.search;
 
 import java.util.Comparator;
 
+
 public class SearchableComparator implements Comparator<Searchable> {
     @Override
     public int compare(Searchable s1, Searchable s2) {

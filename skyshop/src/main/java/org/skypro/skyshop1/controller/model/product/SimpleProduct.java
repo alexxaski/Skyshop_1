@@ -1,6 +1,5 @@
 package org.skypro.skyshop1.controller.model.product;
 
-
 import java.util.UUID;
 
 public class SimpleProduct extends Product {

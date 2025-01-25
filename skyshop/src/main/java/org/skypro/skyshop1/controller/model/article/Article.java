@@ -2,6 +2,7 @@ package org.skypro.skyshop1.controller.model.article;
 import java.util.UUID;
 import org.skypro.skyshop1.controller.model.search.Searchable;
 
+
 public class Article implements Searchable {
 
     private UUID id;

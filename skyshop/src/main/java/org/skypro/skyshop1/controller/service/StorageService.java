@@ -1,0 +1,71 @@
+package org.skypro.skyshop1.controller.service;
+
+import org.skypro.skyshop1.controller.model.article.Article;
+import org.skypro.skyshop1.controller.model.product.FixPriceProduct;
+import org.skypro.skyshop1.controller.model.product.DiscountedProduct;
+import org.skypro.skyshop1.controller.model.product.Product;
+import org.skypro.skyshop1.controller.model.product.SimpleProduct;
+import org.skypro.skyshop1.controller.model.search.Searchable;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+public class StorageService {
+
+    private final Map<UUID, Product> products;
+    private final Map<UUID, Article> articles;
+
+    public StorageService() {
+        this.products = new HashMap<>();
+        addProduct(new SimpleProduct(UUID.randomUUID(), "Творог", 120));
+        addProduct(new DiscountedProduct(UUID.randomUUID(), "Сметана", 98, 20));
+        addProduct(new FixPriceProduct(UUID.randomUUID(), "крем"));
+        addProduct(new SimpleProduct(UUID.randomUUID(), "Варенье вишневое", 75));
+        addProduct(new DiscountedProduct(UUID.randomUUID(), "Пирог с малиной", 300, 20));
+
+        this.articles = new HashMap<>();
+        addArticle(new Article(UUID.randomUUID(), "Омлет с ветчиной", "Приготовлен из яиц и ветчины."));
+        addArticle(new Article(UUID.randomUUID(), "Заголовок", "Текст"));
+        addArticle(new Article(UUID.randomUUID(), "Статья про баклажаны", "Описание баклажанов"));
+    }
+
+    public Map<UUID, Product> StorageService() {
+        return products;
+    }
+
+    public Map<UUID, Article> getArticles() {
+        return articles;
+    }
+
+    public void addProduct(Product product) {
+        UUID id = product.getID();
+        String productName = product.getProductName();
+        int price = product.getPrice();
+        products.put(id, product);
+    }
+
+    public void addArticle(Article article) {
+        UUID id = article.getID();
+        String title = article.getTitle();
+        String text = article.getTexst();
+        articles.put(id, article);
+    }
+
+    public Set<Searchable> getSearchableCollection() {
+        Set<Searchable> searchList = new HashSet<>();
+        searchList.addAll(products.values());
+        searchList.addAll(articles.values());
+        return searchList;
+    }
+
+    public Map<UUID, Product> getAllProducts() {
+        return products;
+    }
+
+    public Map<UUID, Article> getAllArticles() {
+        return articles;
+    }
+
+}
+

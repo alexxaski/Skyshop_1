@@ -1,6 +1,4 @@
-package org.skypro.skyshop.searchEngine;
-
-import org.skypro.skyshop.notFoundAndSedrch.Searchable;
+package org.skypro.skyshop1.controller.model.search;
 
 import java.util.Comparator;
 

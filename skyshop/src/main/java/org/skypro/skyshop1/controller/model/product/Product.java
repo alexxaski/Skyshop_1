@@ -1,16 +1,16 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop1.controller.model.product;
 
-import org.skypro.skyshop.notFoundAndSedrch.Searchable;
+import org.skypro.skyshop1.controller.model.search.Searchable;
+
 import java.util.Objects;
-
+import java.util.UUID;
 
 public abstract class Product implements Searchable{
     public final String productName ;
-    public abstract class Product implements Searchable {
-        public final String productName;
+    final UUID id;
 
-
-        public Product(String productName) {
+        public Product(UUID id,String productName) {
+            this.id = id;
             if (productName == null || productName.isBlank()) {
                 throw new IllegalArgumentException("Название продукта не может быть пустым или содержать только пробелы.");
             }
@@ -58,3 +58,5 @@ public abstract class Product implements Searchable{
             return Objects.hash(productName);
         }
     }
+
+

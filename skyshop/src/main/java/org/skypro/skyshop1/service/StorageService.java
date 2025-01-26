@@ -1,11 +1,11 @@
-package org.skypro.skyshop1.controller.service;
+package org.skypro.skyshop1.service;
 
-import org.skypro.skyshop1.controller.model.article.Article;
-import org.skypro.skyshop1.controller.model.product.FixPriceProduct;
-import org.skypro.skyshop1.controller.model.product.DiscountedProduct;
-import org.skypro.skyshop1.controller.model.product.Product;
-import org.skypro.skyshop1.controller.model.product.SimpleProduct;
-import org.skypro.skyshop1.controller.model.search.Searchable;
+import org.skypro.skyshop1.model.article.Article;
+import org.skypro.skyshop1.model.product.FixPriceProduct;
+import org.skypro.skyshop1.model.product.DiscountedProduct;
+import org.skypro.skyshop1.model.product.Product;
+import org.skypro.skyshop1.model.product.SimpleProduct;
+import org.skypro.skyshop1.model.search.Searchable;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -29,7 +29,7 @@ public class StorageService {
         addArticle(new Article(UUID.randomUUID(), "Статья про баклажаны", "Описание баклажанов"));
     }
 
-    public Map<UUID, Product> StorageService() {
+    public Map<UUID, Product> getProducts() {
         return products;
     }
 
@@ -47,7 +47,7 @@ public class StorageService {
     public void addArticle(Article article) {
         UUID id = article.getID();
         String title = article.getTitle();
-        String text = article.getTexst();
+        String texst = article.getTexst();
         articles.put(id, article);
     }
 
@@ -57,14 +57,5 @@ public class StorageService {
         searchList.addAll(articles.values());
         return searchList;
     }
-
-    public Map<UUID, Product> getAllProducts() {
-        return products;
-    }
-
-    public Map<UUID, Article> getAllArticles() {
-        return articles;
-    }
-
 }
 

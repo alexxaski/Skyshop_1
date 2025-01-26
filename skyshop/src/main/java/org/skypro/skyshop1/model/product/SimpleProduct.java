@@ -1,4 +1,4 @@
-package org.skypro.skyshop1.controller.model.product;
+package org.skypro.skyshop1.model.product;
 
 import java.util.UUID;
 
@@ -25,13 +25,13 @@ public class SimpleProduct extends Product {
     }
 
     @Override
-    public UUID getID() {
-        return this.id;
+    public String getObjName() {
+        return this.getObjName();
     }
 
     @Override
-    public String texst() {
-        return this.texst();
+    public UUID getID() {
+        return this.id;
     }
 
     @Override

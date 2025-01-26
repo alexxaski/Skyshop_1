@@ -1,27 +1,29 @@
 package org.skypro.skyshop1.controller;
 
+import org.skypro.skyshop1.model.search.SearchResult;
+import org.skypro.skyshop1.service.SearchService;
+import org.skypro.skyshop1.service.StorageService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.skypro.skyshop1.controller.model.product.Product;
-import org.skypro.skyshop1.controller.model.article.Article;
-import org.skypro.skyshop1.controller.service.StorageService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.Collection;
+import org.skypro.skyshop1.model.product.Product;
+import org.skypro.skyshop1.model.article.Article;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
 public class ShopController {
-
     private final StorageService storageService;
+    private final SearchService searchService;
 
-    public ShopController(StorageService storageService) {
+    public ShopController(StorageService storageService, SearchService searchService) {
         this.storageService = storageService;
+        this.searchService = searchService;
     }
 
     @GetMapping("/products")
     public Map<UUID, Product> getAllProducts() {
-        return storageService.getAllProducts();
+        return storageService.getProducts();
     }
 
     @GetMapping("/articles")
@@ -29,16 +31,8 @@ public class ShopController {
         return storageService.getArticles();
     }
 
-    @JsonIgnore
-    public String getSearchTerm() {
-
-        return null;
-    }
-
-    @JsonIgnore
-    public String getContentType() {
-
-        return null;
+    @GetMapping("/search")
+    public Set<SearchResult> search(String pattern) {
+        return searchService.search(pattern);
     }
 }
-

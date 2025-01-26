@@ -1,6 +1,7 @@
-package org.skypro.skyshop1.controller.model.product;
+package org.skypro.skyshop1.model.product;
 
-import org.skypro.skyshop1.controller.model.search.Searchable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.skypro.skyshop1.model.search.Searchable;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -35,13 +36,8 @@ public abstract class Product implements Searchable{
         }
 
         @Override
-        public String getContentType() {
+        public String getType() {
             return "PRODUCT";
-        }
-
-        @Override
-        public String getObjectName() {
-            return productName;
         }
 
         @Override
@@ -56,6 +52,10 @@ public abstract class Product implements Searchable{
         public int hashCode() {
             return Objects.hash(productName);
         }
-    }
+
+    public abstract UUID getId();
+
+    public abstract Object getName();
+}
 
 

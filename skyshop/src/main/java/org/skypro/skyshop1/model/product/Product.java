@@ -1,16 +1,17 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop1.model.product;
 
-import org.skypro.skyshop.notFoundAndSedrch.Searchable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.skypro.skyshop1.model.search.Searchable;
 import java.util.Objects;
+import java.util.UUID;
 
 
 public abstract class Product implements Searchable{
     public final String productName ;
-    public abstract class Product implements Searchable {
-        public final String productName;
+    final UUID id;
 
-
-        public Product(String productName) {
+        public Product(UUID id,String productName) {
+            this.id = id;
             if (productName == null || productName.isBlank()) {
                 throw new IllegalArgumentException("Название продукта не может быть пустым или содержать только пробелы.");
             }
@@ -36,13 +37,8 @@ public abstract class Product implements Searchable{
         }
 
         @Override
-        public String getContentType() {
+        public String getType() {
             return "PRODUCT";
-        }
-
-        @Override
-        public String getObjectName() {
-            return productName;
         }
 
         @Override
@@ -57,4 +53,10 @@ public abstract class Product implements Searchable{
         public int hashCode() {
             return Objects.hash(productName);
         }
-    }
+
+    public abstract UUID getId();
+
+    public abstract Object getName();
+}
+
+

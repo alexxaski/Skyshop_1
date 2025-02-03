@@ -1,4 +1,5 @@
 package org.skypro.skyshop1.service;
+
 import org.skypro.skyshop1.model.search.SearchResult;
 import org.springframework.stereotype.Service;
 import java.util.Set;

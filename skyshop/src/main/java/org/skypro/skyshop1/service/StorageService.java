@@ -1,6 +1,7 @@
 package org.skypro.skyshop1.service;
 
 import ch.qos.logback.classic.util.LogbackMDCAdapter;
+import org.skypro.skyshop1.exception.NoSuchProductException;
 import org.skypro.skyshop1.model.article.Article;
 import org.skypro.skyshop1.model.product.FixPriceProduct;
 import org.skypro.skyshop1.model.product.DiscountedProduct;
@@ -62,9 +63,12 @@ public class StorageService {
         return searchList;
     }
 
-    public Optional<Product> getProductById(UUID id) {
-        return Optional.ofNullable(products.get(id));
-
+    public Product getProductById(UUID id) {
+        Product product = products.get(id);
+        if (product == null) {
+            throw new NoSuchProductException("Product with ID " + id + " not found");
+        }
+        return product;
     }
 }
 

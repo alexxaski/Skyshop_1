@@ -1,6 +1,5 @@
 package org.skypro.skyshop1.service;
 
-
 import java.util.List;
 
 public class UserBasket {

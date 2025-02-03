@@ -11,7 +11,6 @@ import org.skypro.skyshop1.model.search.Searchable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.*;
 
 @Service

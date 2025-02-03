@@ -6,6 +6,7 @@ import org.skypro.skyshop1.model.search.Searchable;
 
 public class Article implements Searchable {
 
+
     private final UUID id;
     private final String title;
     private final String texst;

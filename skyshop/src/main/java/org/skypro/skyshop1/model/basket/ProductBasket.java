@@ -18,7 +18,6 @@ public class ProductBasket {
 
     private final Map<UUID, Integer> products = new HashMap<>();
 
-
     public void addProduct(UUID productId) {
         products.put(productId, products.getOrDefault(productId, 0) + 1);
     }

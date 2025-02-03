@@ -1,6 +1,5 @@
 package org.skypro.skyshop1.model.error;
 
-
 public class ShopError {
 
     private String code;

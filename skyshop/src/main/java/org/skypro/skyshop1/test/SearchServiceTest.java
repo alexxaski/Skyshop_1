@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
 public class SearchServiceTest {
 
 
+
         @Test
         public void testSearch_NoObjectsInStorageService() {
             StorageService storageService = Mockito.mock(StorageService.class);

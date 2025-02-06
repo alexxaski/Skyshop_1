@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+
 @Component
 @SessionScope
 public class ProductBasket {

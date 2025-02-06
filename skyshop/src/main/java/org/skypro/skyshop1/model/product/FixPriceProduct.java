@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class FixPriceProduct extends Product {
 
+
     private static final int FIXED_PRICE = 50;
 
     public FixPriceProduct(UUID id, String productName) {

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class DiscountedProduct extends Product {
 
+
     private int basePrice; // Базовая цена
     private int discountPercentage; // Скидка в процентах
 

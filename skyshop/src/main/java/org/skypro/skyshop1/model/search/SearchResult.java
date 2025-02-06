@@ -2,7 +2,6 @@ package org.skypro.skyshop1.model.search;
 
 import java.util.UUID;
 
-
 public class SearchResult {
     private final String id;
     private final String name;

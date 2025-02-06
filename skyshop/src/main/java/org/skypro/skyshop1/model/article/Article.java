@@ -16,7 +16,6 @@ public class Article implements Searchable {
         this.texst = texst;
     }
 
-
     public String getTitle() {
         return this.title;
     }

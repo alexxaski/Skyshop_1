@@ -1,6 +1,5 @@
 package org.skypro.skyshop1.service;
 
-
 import org.skypro.skyshop1.model.product.Product;
 
 public class BasketItem {

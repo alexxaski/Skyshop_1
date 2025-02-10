@@ -1,19 +1,14 @@
 package org.skypro.skyshop1.test;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.skypro.skyshop1.Application;
 import org.skypro.skyshop1.model.basket.ProductBasket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = Application.class)
 
@@ -43,4 +38,19 @@ public class ProductBasketTest {
 
         assertTrue(productBasket.getProducts().containsKey(productId));
     }
+    @Test
+    public void testRemoveProduct() {
+        UUID productId = UUID.randomUUID();
+
+        productBasket.addProduct(productId);
+        productBasket.removeProduct(productId);
+
+        assertFalse(productBasket.getProducts().containsKey(productId));
+    }
+
+    @Test
+    public void testEmptyBasket() {
+        assertTrue(productBasket.getProducts().isEmpty());
+    }
+
 }

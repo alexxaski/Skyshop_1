@@ -1,5 +1,7 @@
 package org.skypro.skyshop1.test;
 
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.skypro.skyshop1.model.search.Searchable;
 import org.skypro.skyshop1.service.SearchService;
 import org.skypro.skyshop1.service.StorageService;
@@ -20,61 +22,65 @@ import static org.mockito.Mockito.when;
 
 public class SearchServiceTest {
 
+    @Mock
+    private StorageService storageService;
+
+    @InjectMocks
+    private SearchService searchService;
+
+    @Test
+    public void testSearch_NoObjectsInStorageService() {
+        StorageService storageService = Mockito.mock(StorageService.class);
+        when(storageService.getSearchableCollection()).thenReturn(new HashSet<>());
+
+        SearchService searchService = new SearchService(storageService);
+        Set<SearchResult> searchResults = searchService.search("Творог");
+
+        assertEquals(0, searchResults.size());
+    }
+
+    @Test
+    public void testSearch_NoMatchingObjectsInStorageService() {
+        StorageService storageService = Mockito.mock(StorageService.class);
+        Set<SimpleProduct> products = new HashSet<>();
+        products.add(new SimpleProduct(UUID.randomUUID(), "Сметана", 100));
+
+        // Преобразуем Set<SimpleProduct> в Set<Searchable>
+        Set<Searchable> searchableProducts = new HashSet<>(products);
+        when(storageService.getSearchableCollection()).thenReturn(searchableProducts);
+
+        SearchService searchService = new SearchService(storageService);
+        Set<SearchResult> searchResults = searchService.search("Творог");
+
+        assertEquals(0, searchResults.size());
+    }
+
+    @Test
+    public void testSearch_MatchingObjectInStorageService() {
+        StorageService storageService = Mockito.mock(StorageService.class);
+        Set<SimpleProduct> products = new HashSet<>();
+        products.add(new SimpleProduct(UUID.randomUUID(), "Творог", 120));
 
 
-        @Test
-        public void testSearch_NoObjectsInStorageService() {
-            StorageService storageService = Mockito.mock(StorageService.class);
-            when(storageService.getSearchableCollection()).thenReturn(new HashSet<>());
+        Set<Searchable> searchableProducts = new HashSet<>(products);
+        when(storageService.getSearchableCollection()).thenReturn(searchableProducts);
 
-            SearchService searchService = new SearchService(storageService);
-            Set<SearchResult> searchResults = searchService.search("Творог");
+        SearchService searchService = new SearchService(storageService);
+        Set<SearchResult> searchResults = searchService.search("Творог");
 
-            assertEquals(0, searchResults.size());
-        }
+        assertEquals(1, searchResults.size());
 
-        @Test
-        public void testSearch_NoMatchingObjectsInStorageService() {
-            StorageService storageService = Mockito.mock(StorageService.class);
-            Set<SimpleProduct> products = new HashSet<>();
-            products.add(new SimpleProduct(UUID.randomUUID(), "Сметана", 100));
+    }
 
-            // Преобразуем Set<SimpleProduct> в Set<Searchable>
-            Set<Searchable> searchableProducts = new HashSet<>(products);
-            when(storageService.getSearchableCollection()).thenReturn(searchableProducts);
+    @Test
+    public void testSearch_ExceptionHandling() {
+        SearchService searchService = new SearchService(new MockStorageService());
 
-            SearchService searchService = new SearchService(storageService);
-            Set<SearchResult> searchResults = searchService.search("Творог");
+        String searchTerm = "NonExistentTerm";
+        Set<SearchResult> searchResults = searchService.search(searchTerm);
 
-            assertEquals(0, searchResults.size());
-        }
-
-        @Test
-        public void testSearch_MatchingObjectInStorageService() {
-            StorageService storageService = Mockito.mock(StorageService.class);
-            Set<SimpleProduct> products = new HashSet<>();
-            products.add(new SimpleProduct(UUID.randomUUID(), "Творог", 120));
-
-
-            Set<Searchable> searchableProducts = new HashSet<>(products);
-            when(storageService.getSearchableCollection()).thenReturn(searchableProducts);
-
-            SearchService searchService = new SearchService(storageService);
-            Set<SearchResult> searchResults = searchService.search("Творог");
-
-            assertEquals(1, searchResults.size());
-
-        }
-
-        @Test
-        public void testSearch_ExceptionHandling() {
-            SearchService searchService = new SearchService(new MockStorageService());
-
-            String searchTerm = "NonExistentTerm";
-            Set<SearchResult> searchResults = searchService.search(searchTerm);
-
-            assertTrue(searchResults.isEmpty(), "Search result should be empty for non-existent term");
-        }
+        assertTrue(searchResults.isEmpty(), "Search result should be empty for non-existent term");
+    }
 
     private static class MockStorageService extends StorageService {
         @Override

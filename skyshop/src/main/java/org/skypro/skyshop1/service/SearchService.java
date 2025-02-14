@@ -20,6 +20,13 @@ public class SearchService {
                         .contains(search.toLowerCase().replace(" ", "")))
                 .map(SearchResult::fromSearchable)
                 .collect(Collectors.toSet());
+
+
+        if (searchResults.isEmpty()) {
+
+            System.out.println("No products found for search term: " + search);
+        }
+
         return searchResults;
     }
 }

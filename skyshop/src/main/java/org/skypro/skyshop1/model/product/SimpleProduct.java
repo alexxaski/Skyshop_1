@@ -26,7 +26,7 @@ public class SimpleProduct extends Product {
 
     @Override
     public String getObjName() {
-        return this.getObjName();
+        return "Название объекта";
     }
 
     @Override

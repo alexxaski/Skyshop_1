@@ -1,6 +1,6 @@
 package org.skypro.skyshop1.service;
 
-import ch.qos.logback.classic.util.LogbackMDCAdapter;
+import org.skypro.skyshop1.exception.NoSuchProductException;
 import org.skypro.skyshop1.model.article.Article;
 import org.skypro.skyshop1.model.product.FixPriceProduct;
 import org.skypro.skyshop1.model.product.DiscountedProduct;
@@ -8,10 +8,9 @@ import org.skypro.skyshop1.model.product.Product;
 import org.skypro.skyshop1.model.product.SimpleProduct;
 import org.skypro.skyshop1.model.search.Searchable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
+
 
 @Service
 public class StorageService {
@@ -59,12 +58,17 @@ public class StorageService {
         Set<Searchable> searchList = new HashSet<>();
         searchList.addAll(products.values());
         searchList.addAll(articles.values());
+
+        if (searchList.isEmpty()) {
+            throw new NoSuchProductException("No products found in the collection");
+        }
+
         return searchList;
     }
+
 
     public Optional<Product> getProductById(UUID id) {
         return Optional.ofNullable(products.get(id));
 
     }
 }
-

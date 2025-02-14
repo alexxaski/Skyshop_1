@@ -14,7 +14,6 @@ public class SearchResult {
         this.contentType = contentType;
     }
 
-
     public static SearchResult fromSearchable(Searchable object) {
         String id = String.valueOf(object.getID());
         String name = object.getObjName();
